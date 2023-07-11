@@ -16,6 +16,18 @@ addMovie:(req, res)=>{
     })
     currentID++;
     res.status(200).send(movieDatabase)
+},
+deleteMovie:(req,res)=>{
+    const id = +req.params.id;
+
+    for(let i =0;i<movieDatabase.length;i++){
+        if(movieDatabase[i].id===id){
+            movieDatabase.splice(i,1)
+            res.status(200).send(movieDatabase)
+            return
+        }
+    }
+    res.status(400).send("Movie not found")
 }
 
 
